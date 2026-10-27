@@ -23,3 +23,10 @@ USER node
 
 EXPOSE 9000
 CMD [ "node", "src/cobalt" ]
+# Tạo Git repository giả để tránh lỗi "not a git repository"
+RUN apk add --no-cache git && \
+    git init && \
+    git config user.email "build@render.com" && \
+    git config user.name "Render" && \
+    git add . && \
+    git commit -m "Deploy build"
